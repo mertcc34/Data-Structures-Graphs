@@ -59,7 +59,7 @@ public class TestGraph {
 		g.addEdge(e7);
 		*/
 		
-		 g.loadDot("data/24subat.dot");
+		 g.loadDot("data/exgraph1.dot");
 		 
 		
 		
@@ -90,9 +90,52 @@ public class TestGraph {
 		//System.out.println("pat from/to " +n1+"/"+ n6);
 		path(g,g.getNodeAt(0) ,g.getNodeAt(4));
 		System.out.println("\n"+ printSome); // Added this to see the graph with parentheses and more clearly
+		System.out.println();
+		
+		System.out.println("Strongly Connected".toUpperCase());
+		stronglyConnect(g);
+	}
+	
+	
+	/*
+	 * Starting strongly connected
+	 * components method.
+	 */
+	
+	public static void stronglyConnect (Graph g){
+		Node[] nodeArray = new Node[g.nodes.size()];
+		DFS(g);
+		int i =0;
+		for(Node u : g.getNodes()){
+			nodeArray[i]=u;
+			i++;
+		}
+		for (int j = 0; j < nodeArray.length; j++) {
+			System.out.print(nodeArray[j].data+"   ");
+			System.out.println(nodeArray[j].finishing);
+		}
+		Graph gTwo = Graph.reverseGraph(g);
+
+		for(Node m: gTwo.getNodes())
+			System.out.println(m);
+		
+		for(Edge e: gTwo.getEdges())
+			System.out.println(e);
+		
+		DFS(gTwo);
+		System.out.println("data\tpred\tdisc\tfinish\tvisited");
+		for(Node<Integer> n: gTwo.getNodes()){
+			System.out.println(n.data+"\t"+n.predecessor+"\t"+n.discovery+"\t"
+		+n.finishing+"\t"+n.visited);
+			
+		}
+		
 		
 	}
-
+	
+	
+	
+	
 	
 	
 	public static void produceMatrix(Graph g){
@@ -115,7 +158,7 @@ public class TestGraph {
 	
 	
 	
-	private static void path(Graph g, Node<Integer> n1,  Node<Integer> n2) {
+	 static void path(Graph g, Node<Integer> n1,  Node<Integer> n2) {
 		
 		
 		if(n1.equals(n2))
@@ -131,7 +174,7 @@ public class TestGraph {
 	}
 
 	
-	private static void DFS(Graph g){
+	 static void DFS(Graph g){
 		for(Node u : g.getNodes()){
 			u.unvisit();
 			u.predecessor=null;
@@ -150,7 +193,7 @@ public class TestGraph {
 	 * Mert
 	 */
 	
-	private static void DFSVisit(Graph g, Node u) {
+	 static void DFSVisit(Graph g, Node u) {
 		time ++;
 		u.discovery=time;
 		u.visit();

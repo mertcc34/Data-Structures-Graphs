@@ -5,8 +5,8 @@
 
 public class Edge {
  
-    protected Node a, b;
-    protected double weight;
+     Node a, b;
+     double weight;
      
     public Edge(Node a, Node b) {
         this(a, b, Double.POSITIVE_INFINITY);

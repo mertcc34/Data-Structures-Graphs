@@ -6,8 +6,8 @@
 
 public class Node<T> implements Comparable<Node<T>> {
      
-    protected T data;
-    protected boolean visited;
+    T data;
+    boolean visited;
     public Integer index = null;
     public double distance = Double.POSITIVE_INFINITY;
     public Node<T> predecessor = null;

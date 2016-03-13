@@ -8,10 +8,10 @@ import java.util.*;
  
 public class Graph {
  
-    protected Vector<Node> nodes = new Vector<Node>();
-    protected Vector<Edge> edges = new Vector<Edge>();
-    protected boolean directed = false;
-    protected boolean sortedNeighbors = true;
+    Vector<Node> nodes = new Vector<Node>();
+    Vector<Edge> edges = new Vector<Edge>();
+    boolean directed = false;
+    boolean sortedNeighbors = true;
      
     public double[][] getAdjacencyMatrix() {
         double[][] adjMatrix = new double[nodes.size()][nodes.size()];
@@ -191,6 +191,21 @@ public class Graph {
 		return false;
 	}
     
+	/*
+	 * Reverse graph method to use it in the Strongly Connected 
+	 * Method.
+	 */
+		static Graph reverseGraph(Graph graph) {
+		Graph tempG = new Graph();
+		for(Node u : graph.getNodes()){
+			tempG.addNode(u);
+		}
+		for(Edge e: graph.getEdges()){
+			Edge tempEdge = new Edge(e.b,e.a,e.weight);
+			tempG.addEdge(tempEdge);
+		}
+        return tempG;
+    }
     
     
  
