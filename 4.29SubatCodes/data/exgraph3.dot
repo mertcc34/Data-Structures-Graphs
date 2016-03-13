@@ -1,0 +1,14 @@
+graph G {
+   a;
+   b;
+   c;
+   d;
+   e;
+   c -- a [w=2,label="2"];
+   a -- b [w=7,label="7"];
+   b -- c [w=11,label="11"];
+   c -- d [w=6,label="6"];
+   d -- e [w=4,label="4"];
+   e -- d [w=5,label="5"];
+   c -- e [w=7,label="7"];
+}

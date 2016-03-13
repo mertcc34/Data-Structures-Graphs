@@ -1,0 +1,8 @@
+digraph MyGraph {
+   a;
+   b;
+   c;
+   a -> b [w=2.2];
+   b -> c [w=1.4];
+   a -> c [w=1.7];
+}
