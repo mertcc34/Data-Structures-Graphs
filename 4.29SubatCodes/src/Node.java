@@ -44,5 +44,7 @@ public class Node<T> implements Comparable<Node<T>> {
     public String toString() {
         return data.toString();
     }
+    
+    
      
 }

@@ -5,7 +5,9 @@
 
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
+import java.util.Set;
 import java.util.Stack;
 public class TestGraph {
 
@@ -90,50 +92,30 @@ public class TestGraph {
 		//System.out.println("pat from/to " +n1+"/"+ n6);
 		path(g,g.getNodeAt(0) ,g.getNodeAt(4));
 		System.out.println("\n"+ printSome); // Added this to see the graph with parentheses and more clearly
-		System.out.println();
+		System.out.println();				 // Mert
 		
+		
+		
+		/*
+		 * STRONGLY CONNECTED TEST
+		 */
 		System.out.println("Strongly Connected".toUpperCase());
-		stronglyConnect(g);
-	}
-	
-	
-	/*
-	 * Starting strongly connected
-	 * components method.
-	 */
-	
-	public static void stronglyConnect (Graph g){
-		Node[] nodeArray = new Node[g.nodes.size()];
-		DFS(g);
-		int i =0;
-		for(Node u : g.getNodes()){
-			nodeArray[i]=u;
-			i++;
-		}
-		for (int j = 0; j < nodeArray.length; j++) {
-			System.out.print(nodeArray[j].data+"   ");
-			System.out.println(nodeArray[j].finishing);
-		}
-		Graph gTwo = Graph.reverseGraph(g);
-
-		for(Node m: gTwo.getNodes())
-			System.out.println(m);
 		
-		for(Edge e: gTwo.getEdges())
-			System.out.println(e);
+		StronglyConnected test = new StronglyConnected ();
+		List<Set<Node<Integer>>> result = test.strongConnect(g);
 		
-		DFS(gTwo);
-		System.out.println("data\tpred\tdisc\tfinish\tvisited");
-		for(Node<Integer> n: gTwo.getNodes()){
-			System.out.println(n.data+"\t"+n.predecessor+"\t"+n.discovery+"\t"
-		+n.finishing+"\t"+n.visited);
-			
-		}
+		
+		/*
+		 * Prints the connected members in the 
+		 * required order to the console.
+		 */
+		result.forEach(set -> {
+			set.forEach(v -> System.out.print(v.data + " "));
+			System.out.println();
+		});
 		
 		
 	}
-	
-	
 	
 	
 	

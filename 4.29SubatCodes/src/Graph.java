@@ -9,9 +9,9 @@ import java.util.*;
 public class Graph {
  
     Vector<Node> nodes = new Vector<Node>();
-    Vector<Edge> edges = new Vector<Edge>();
-    boolean directed = false;
-    boolean sortedNeighbors = true;
+    static Vector<Edge> edges = new Vector<Edge>();
+    static boolean directed = false;
+    static boolean sortedNeighbors = true;
      
     public double[][] getAdjacencyMatrix() {
         double[][] adjMatrix = new double[nodes.size()][nodes.size()];
@@ -79,13 +79,21 @@ public class Graph {
     public Node getNodeAt(int i) {
         return nodes.elementAt(i);
     }
+    public Node getNodeT(Node x){
+    	for (Node e : nodes){
+    		if(e == x){
+    			return x;
+    		}
+    	}
+    	return null;
+    }
      
     public void unvisitAllNodes() {
         for(int i = 0; i < nodes.size(); i++)
             nodes.elementAt(i).unvisit();
     }
      
-    public Vector<Node> getNeighbors(Node a) {
+    public static Vector<Node> getNeighbors(Node a) {
         Vector<Node> neighbors = new Vector<Node>();
          
         for(int i = 0; i < edges.size(); i++) {
@@ -191,21 +199,7 @@ public class Graph {
 		return false;
 	}
     
-	/*
-	 * Reverse graph method to use it in the Strongly Connected 
-	 * Method.
-	 */
-		static Graph reverseGraph(Graph graph) {
-		Graph tempG = new Graph();
-		for(Node u : graph.getNodes()){
-			tempG.addNode(u);
-		}
-		for(Edge e: graph.getEdges()){
-			Edge tempEdge = new Edge(e.b,e.a,e.weight);
-			tempG.addEdge(tempEdge);
-		}
-        return tempG;
-    }
+	
     
     
  
